@@ -30,7 +30,6 @@ $(window).on('load', function () {
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/status/',
     success: function (data, status) {
-      console.log(data.status);
       if (data.status === 'OK') {
         $('div#api_status').addClass('available');
       } else {
@@ -53,11 +52,13 @@ $(window).on('load', function () {
               <div class="price_by_night">${j.price_by_night}</div>
             </div>
             <div class="information">
-              <div class="max_guest">${j.max_guest} Guest${j.max_guest != 1}s${endif}</div>
-              <div class="number_rooms">${j.number_rooms} Bedroom${j.number_rooms != 1}s${endif}</div>
-              <div class="number_bathrooms">${j.number_bathrooms} Bathroom${j.number_bathrooms != 1}s${endif}</div>
+              <div class="max_guest">${j.max_guest} Guest${j.max_guest !== 1 ? 's' : ''}</div>
+              <div class="number_rooms">${j.number_rooms} Bedroom${j.number_rooms !== 1 ? 's' : ''}</div>
+              <div class="number_bathrooms">${j.number_bathrooms} Bathroom${j.number_bathrooms !== 1 ? 's' : ''}</div>
             </div>
-          </article>`);}
+            <div class="description">${j.description}</div>
+          </article>`);
       }
-    })
+    }
+  });
 });
