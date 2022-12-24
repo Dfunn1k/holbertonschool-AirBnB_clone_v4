@@ -49,7 +49,7 @@ $(window).on('load', function () {
           <article>
             <div class="title_box">
               <h2>${j.name}</h2>
-              <div class="price_by_night">${j.price_by_night}</div>
+              <div class="price_by_night">$${j.price_by_night}</div>
             </div>
             <div class="information">
               <div class="max_guest">${j.max_guest} Guest${j.max_guest !== 1 ? 's' : ''}</div>
@@ -60,5 +60,33 @@ $(window).on('load', function () {
           </article>`);
       }
     }
+  });
+
+  $('button[type="button"]').click(function() {
+    console.log("clkickeado")
+    $.ajax({
+      type: 'POST',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      data: JSON.stringify({ amenities : Object.keys(showAmenities) }),
+      contentType: 'application/json',
+      success: function(data){
+        $('section.places').empty();
+        for (const j of data){
+          $('section.places').append(`
+          <article>
+          <div class="title_box">
+            <h2>${j.name}</h2>
+            <div class="price_by_night">$${j.price_by_night}</div>
+          </div>
+          <div class="information">
+            <div class="max_guest">${j.max_guest} Guest${j.max_guest !== 1 ? 's' : ''}</div>
+            <div class="number_rooms">${j.number_rooms} Bedroom${j.number_rooms !== 1 ? 's' : ''}</div>
+            <div class="number_bathrooms">${j.number_bathrooms} Bathroom${j.number_bathrooms !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="description">${j.description}</div>
+        </article>`)
+        }
+      }
+    })
   });
 });
