@@ -48,25 +48,25 @@ $(window).on('load', function () {
       let j;
       for (j of data) {
         $('section.places').append(
-        <article>
-          <div class="title_box">
-            <h2>${j.name}</h2>
-            <div class="price_by_night">
-              $${j.price_by_night}
+          `<article>
+            <div class="title_box">
+              <h2>${j.name}</h2>
+              <div class="price_by_night">
+                $${j.price_by_night}
+              </div>
             </div>
-          </div>
-          <div class="information">
-            <div class="max_guest">${j.max_guest} Guest${j.max_guest != 1}s${endif}</div>
-            <div class="number_rooms">${j.number_rooms} Bedroom${j.number_rooms != 1}s${endif}</div>
-            <div class="number_bathrooms">${j.number_bathrooms} Bathroom${j.number_bathrooms != 1}s${endif}</div>
-          </div>
-          <div class="user">
-            <b>Owner:</b> ${j.user.first_name} ${j.user.last_name}
-          </div>
-          <div class="description">
-            ${j.description | safe}
-          </div>
-       </article>)}
-    }
-  })
+            <div class="information">
+              <div class="max_guest">${j.max_guest} Guest${j.max_guest != 1}s${endif}</div>
+              <div class="number_rooms">${j.number_rooms} Bedroom${j.number_rooms != 1}s${endif}</div>
+              <div class="number_bathrooms">${j.number_bathrooms} Bathroom${j.number_bathrooms != 1}s${endif}</div>
+            </div>
+            <div class="user">
+              <b>Owner:</b> ${j.user.first_name} ${j.user.last_name}
+            </div>
+            <div class="description">
+              ${j.description | safe}
+            </div>
+          </article>`)}
+      }
+    })
 });
